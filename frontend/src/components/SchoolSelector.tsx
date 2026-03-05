@@ -29,9 +29,15 @@ const SchoolSelector = ({ schools, loading }: SchoolSelectorProps) => {
         );
     }, [activeLevel, activeCluster, searchQ, schools]);
 
-    const handleProceed = () => {
+    const handleProceedAIP = () => {
         if (selectedSchool) {
-            alert(`Selected:\n${selectedSchool.name}\n${selectedSchool.level} · Cluster ${selectedSchool.cluster}\n\nSystem access coming soon.`);
+            window.location.hash = `#/aip/new?school=${selectedSchool.id}&name=${encodeURIComponent(selectedSchool.name)}`;
+        }
+    };
+
+    const handleProceedPIR = () => {
+        if (selectedSchool) {
+            window.location.hash = `#/pir/new?school=${selectedSchool.id}&name=${encodeURIComponent(selectedSchool.name)}`;
         }
     };
 
@@ -148,7 +154,10 @@ const SchoolSelector = ({ schools, loading }: SchoolSelectorProps) => {
                                 {selectedSchool ? `${selectedSchool.level} School · Cluster ${selectedSchool.cluster}` : '—'}
                             </div>
                         </div>
-                        <button className="btn-proceed" onClick={handleProceed}>Proceed →</button>
+                        <div className="flex gap-3">
+                            <button className="btn-proceed" style={{ backgroundColor: '#10b981' }} onClick={handleProceedAIP}>Start AIP →</button>
+                            <button className="btn-proceed" onClick={handleProceedPIR}>Start PIR →</button>
+                        </div>
                     </div>
 
                     {/* Legend */}

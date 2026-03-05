@@ -5,6 +5,8 @@ import StatsBar from './components/StatsBar';
 import SchoolSelector from './components/SchoolSelector';
 import AboutSDO from './components/AboutSDO';
 import Footer from './components/Footer';
+import AIPForm from './components/AIPForm';
+import PIRForm from './components/PIRForm';
 
 const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
@@ -18,6 +20,13 @@ interface School {
 export default function App() {
     const [schools, setSchools] = useState<School[]>([]);
     const [loading, setLoading] = useState(true);
+    const [currentPath, setCurrentPath] = useState(window.location.hash);
+
+    useEffect(() => {
+        const handleHashChange = () => setCurrentPath(window.location.hash);
+        window.addEventListener('hashchange', handleHashChange);
+        return () => window.removeEventListener('hashchange', handleHashChange);
+    }, []);
 
     useEffect(() => {
         fetch(`${API_BASE}/api/schools`)
@@ -39,6 +48,22 @@ export default function App() {
                 setLoading(false);
             });
     }, []);
+
+    // Hash Routing Logic
+    const pathParts = currentPath.split('?')[0];
+    const queryParams = new URLSearchParams(currentPath.split('?')[1] || "");
+    const schoolIdParam = parseInt(queryParams.get('school') || "0");
+    const schoolNameParam = queryParams.get('name') || "Unknown School";
+
+    const navigateToHome = () => window.location.hash = '';
+
+    if (pathParts === '#/aip/new') {
+        return <AIPForm schoolId={schoolIdParam} schoolName={schoolNameParam} onBack={navigateToHome} />;
+    }
+
+    if (pathParts === '#/pir/new') {
+        return <PIRForm schoolId={schoolIdParam} schoolName={schoolNameParam} onBack={navigateToHome} />;
+    }
 
     return (
         <>
