@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DepEd Guihulngan City Division | PIR & AIP System</title>
+    <meta name="description"
+        content="Department of Education – Guihulngan City Division PIR and AIP System. Select your school to get started." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --blue: #1648D4;
+            --blue-deep: #0a2a8c;
+            --blue-bright: #3A7BFF;
+            --blue-pale: #EBF0FF;
+            --pink: #E91E8C;
+            --pink-light: #FF6EC4;
+            --pink-pale: #FDEEF6;
+
+            --surface: #FFFFFF;
+            --surface2: #F4F6FB;
+            --surface3: #EDF0F9;
+            --border: #DDE3F2;
+            --border-pink: rgba(233, 30, 140, .22);
+            --border-blue: rgba(58, 123, 255, .22);
+
+            --text: #0E1535;
+            --text-mid: #3A4468;
+            --muted: #7A86A8;
+
+            --elem-color: #059669;
+            --sec-color: #D61F8A;
+
+            --shadow-sm: 0 2px 10px rgba(20, 40, 120, .08);
+            --shadow-md: 0 8px 30px rgba(20, 40, 120, .12);
+            --shadow-lg: 0 20px 60px rgba(20, 40, 120, .14);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--surface2);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* ── FLAG STRIP ──────────────────────────────── */
+        .flag-strip {
+            height: 5px;
+            background: linear-gradient(90deg,
+                    var(--blue-deep) 0 33%, var(--pink) 33% 66%, var(--blue-bright) 66% 100%);
+        }
+
+        /* ── HERO ────────────────────────────────────── */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 5rem 1.5rem 7rem;
+            overflow: hidden;
+        }
+
+        /* Photo bg — bright this time */
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('bg.webp') center / cover;
+            filter: brightness(0.32) saturate(0.9);
+            animation: hzoom 24s ease-in-out infinite alternate;
+        }
+
+        @keyframes hzoom {
+            to {
+                transform: scale(1.08);
+            }
+        }
+
+        /* White-tinted overlay for light feel */
+        .hero-ov {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 90% 65% at 20% 5%, rgba(22, 72, 212, .72) 0%, transparent 58%),
+                radial-gradient(ellipse 75% 55% at 82% 10%, rgba(233, 30, 140, .58) 0%, transparent 58%),
+                radial-gradient(ellipse 70% 60% at 50% 100%, rgba(255, 255, 255, .92) 0%, transparent 72%),
+                linear-gradient(180deg, rgba(14, 21, 53, .45) 0%, rgba(255, 255, 255, .15) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, .14) 1px, transparent 1px) 0 0 / 44px 44px;
+            animation: pdrift 24s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes pdrift {
+            to {
+                background-position: 44px 44px;
+            }
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 820px;
+            animation: fadeUp .9s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(28px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* logos */
+        .logo-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.6rem;
+            margin-bottom: 2rem;
+        }
+
+        .logo-ring {
+            width: 108px;
+            height: 108px;
+            border-radius: 50%;
+            padding: 5px;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, var(--blue-bright), var(--pink-light));
+            box-shadow: 0 0 0 3px #fff, 0 0 28px rgba(233, 30, 140, .5), 0 0 56px rgba(58, 123, 255, .3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: rpulse 3.5s ease-in-out infinite alternate;
+        }
+
+        .logo-ring img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #fff;
+        }
+
+        @keyframes rpulse {
+            from {
+                box-shadow: 0 0 0 3px #fff, 0 0 22px rgba(233, 30, 140, .42), 0 0 44px rgba(58, 123, 255, .25);
+            }
+
+            to {
+                box-shadow: 0 0 0 3px #fff, 0 0 44px rgba(233, 30, 140, .72), 0 0 80px rgba(58, 123, 255, .42);
+            }
+        }
+
+        .logo-div {
+            width: 2px;
+            height: 72px;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, .7), transparent);
+            opacity: .6;
+        }
+
+        /* badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            background: rgba(255, 255, 255, .22);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, .45);
+            border-radius: 100px;
+            padding: .3rem 1rem;
+            font-size: .7rem;
+            font-weight: 600;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 1.2rem;
+        }
+
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--pink-light);
+            animation: blink 1.6s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: .2;
+            }
+        }
+
+        .hero-dept {
+            font-size: clamp(.7rem, 1.6vw, .82rem);
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .8);
+            margin-bottom: .5rem;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5.5vw, 3.9rem);
+            font-weight: 900;
+            line-height: 1.08;
+            margin-bottom: .5rem;
+            color: #fff;
+            text-shadow: 0 2px 24px rgba(0, 0, 0, .3);
+        }
+
+        .hero-sub {
+            font-size: clamp(1rem, 2.4vw, 1.38rem);
+            font-weight: 700;
+            background: linear-gradient(90deg, #ffe0f5, #c8d8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: .9rem;
+        }
+
+        .hero-desc {
+            font-size: clamp(.85rem, 1.5vw, 1rem);
+            color: rgba(255, 255, 255, .8);
+            max-width: 580px;
+            margin: 0 auto 2rem;
+            line-height: 1.78;
+        }
+
+        /* buttons */
+        .btn-row {
+            display: flex;
+            gap: .85rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            padding: .8rem 1.9rem;
+            border-radius: 50px;
+            font-size: .88rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all .26s cubic-bezier(.34, 1.56, .64, 1);
+        }
+
+        .btn-primary {
+            background: #fff;
+            color: var(--blue);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, .22);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, .3);
+        }
+
+        .btn-pink {
+            background: linear-gradient(135deg, var(--pink), var(--pink-light));
+            color: #fff;
+            box-shadow: 0 8px 28px rgba(233, 30, 140, .4);
+        }
+
+        .btn-pink:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 16px 40px rgba(233, 30, 140, .6);
+        }
+
+        .scroll-ind {
+            position: absolute;
+            bottom: 1.8rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .35rem;
+            color: rgba(255, 255, 255, .6);
+            font-size: .68rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .scroll-mouse {
+            width: 20px;
+            height: 32px;
+            border: 2px solid rgba(255, 255, 255, .4);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            padding-top: 5px;
+        }
+
+        .scroll-whl {
+            width: 3px;
+            height: 6px;
+            background: var(--pink-light);
+            border-radius: 4px;
+            animation: swhl 1.8s ease-in-out infinite;
+        }
+
+        @keyframes swhl {
+            80% {
+                transform: translateY(9px);
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* ── STATS BAR ───────────────────────────────── */
+        .stats-bar {
+            background: var(--surface);
+            border-top: 3px solid transparent;
+            border-image: linear-gradient(90deg, var(--blue), var(--pink)) 1;
+            border-bottom: 1px solid var(--border);
+            padding: 1.3rem 2rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: .45rem 2.4rem;
+            border-right: 1px solid var(--border);
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat-n {
+            font-size: 1.75rem;
+            font-weight: 800;
+            line-height: 1;
+            background: linear-gradient(90deg, var(--blue), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-l {
+            font-size: .68rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: .2rem;
+        }
+
+        /* ── SHARED SECTION ──────────────────────────── */
+        .section-inner {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .eyebrow {
+            text-align: center;
+            font-size: .7rem;
+            font-weight: 700;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            background: linear-gradient(90deg, var(--blue-bright), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: .65rem;
+        }
+
+        .sec-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: .85rem;
+        }
+
+        .sec-lead {
+            text-align: center;
+            color: var(--muted);
+            max-width: 540px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.75;
+            font-size: .95rem;
+        }
+
+        /* ── SELECTOR SECTION ────────────────────────── */
+        .selector-section {
+            padding: 5rem 1.5rem;
+            background: var(--surface2);
+        }
+
+        .sel-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-top: 3px solid transparent;
+            border-image: linear-gradient(90deg, var(--blue-bright), var(--pink)) 1;
+            border-radius: 20px;
+            padding: 2.2rem 2rem;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        /* filter row */
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+            margin-bottom: 1.2rem;
+            align-items: center;
+        }
+
+        .filter-label {
+            font-size: .7rem;
+            font-weight: 600;
+            color: var(--muted);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-right: .2rem;
+        }
+
+        .fpill {
+            padding: .42rem 1.05rem;
+            border-radius: 50px;
+            font-size: .78rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1.5px solid var(--border);
+            background: var(--surface2);
+            color: var(--text-mid);
+            transition: all .2s ease;
+        }
+
+        .fpill:hover {
+            border-color: var(--blue-bright);
+            color: var(--blue);
+        }
+
+        .fpill.active {
+            background: linear-gradient(135deg, var(--blue), var(--blue-bright));
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(22, 72, 212, .3);
+        }
+
+        .fpill.active.elem {
+            background: linear-gradient(135deg, #065f3c, #059669);
+            box-shadow: 0 4px 14px rgba(5, 150, 105, .28);
+        }
+
+        .fpill.active.sec {
+            background: linear-gradient(135deg, var(--pink), var(--pink-light));
+            box-shadow: 0 4px 16px rgba(233, 30, 140, .3);
+        }
+
+        /* cluster pills */
+        .cluster-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .38rem;
+            margin-bottom: 1.3rem;
+        }
+
+        .cpill {
+            padding: .32rem .85rem;
+            border-radius: 50px;
+            font-size: .73rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1.5px solid var(--border);
+            background: var(--surface2);
+            color: var(--muted);
+            transition: all .18s;
+        }
+
+        .cpill:hover {
+            border-color: var(--blue-bright);
+            color: var(--blue);
+            background: var(--blue-pale);
+        }
+
+        .cpill.active {
+            background: var(--blue-pale);
+            border-color: var(--blue-bright);
+            color: var(--blue);
+            font-weight: 700;
+        }
+
+        /* search */
+        .search-wrap {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: .4;
+            font-size: 1rem;
+            pointer-events: none;
+        }
+
+        #schoolSearch {
+            width: 100%;
+            padding: .8rem 3rem .8rem 2.8rem;
+            background: var(--surface2);
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            color: var(--text);
+            font-size: .92rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        #schoolSearch::placeholder {
+            color: var(--muted);
+        }
+
+        #schoolSearch:focus {
+            border-color: var(--pink);
+            box-shadow: 0 0 0 3px rgba(233, 30, 140, .12);
+        }
+
+        .search-clear {
+            position: absolute;
+            right: .9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 1rem;
+            opacity: 0;
+            transition: opacity .2s;
+            pointer-events: none;
+        }
+
+        .search-clear.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* count */
+        .dropdown-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: .6rem;
+        }
+
+        .dropdown-count {
+            font-size: .75rem;
+            color: var(--muted);
+        }
+
+        .dropdown-count strong {
+            background: linear-gradient(90deg, var(--blue), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+        }
+
+        /* list */
+        .school-list {
+            max-height: 320px;
+            overflow-y: auto;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            background: var(--surface);
+            scrollbar-width: thin;
+            scrollbar-color: rgba(233, 30, 140, .3) transparent;
+        }
+
+        .school-list::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .school-list::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--blue-bright), var(--pink));
+            border-radius: 10px;
+        }
+
+        .school-opt {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            padding: .72rem 1rem;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border);
+            transition: background .15s;
+            user-select: none;
+        }
+
+        .school-opt:last-child {
+            border-bottom: none;
+        }
+
+        .school-opt:hover {
+            background: var(--blue-pale);
+        }
+
+        .school-opt.selected {
+            background: var(--pink-pale);
+            border-left: 3px solid var(--pink);
+        }
+
+        .sdot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .sdot.elem {
+            background: var(--elem-color);
+        }
+
+        .sdot.sec {
+            background: var(--sec-color);
+        }
+
+        .sname {
+            font-size: .88rem;
+            flex: 1;
+            color: var(--text);
+            line-height: 1.3;
+        }
+
+        .stag {
+            font-size: .62rem;
+            font-weight: 700;
+            letter-spacing: .05em;
+            padding: 2px 8px;
+            border-radius: 20px;
+            flex-shrink: 0;
+        }
+
+        .stag.elem {
+            background: rgba(5, 150, 105, .1);
+            color: var(--elem-color);
+            border: 1px solid rgba(5, 150, 105, .25);
+        }
+
+        .stag.sec {
+            background: rgba(214, 31, 138, .1);
+            color: var(--sec-color);
+            border: 1px solid rgba(214, 31, 138, .25);
+        }
+
+        .scluster {
+            font-size: .65rem;
+            color: var(--muted);
+            flex-shrink: 0;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        /* selected display */
+        .selected-display {
+            margin-top: 1.2rem;
+            background: linear-gradient(135deg, var(--blue-pale), var(--pink-pale));
+            border: 1.5px solid var(--border-pink);
+            border-radius: 12px;
+            padding: 1.1rem 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: .9rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity .35s ease, transform .35s ease;
+            pointer-events: none;
+        }
+
+        .selected-display.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .sel-icon {
+            font-size: 1.7rem;
+            flex-shrink: 0;
+        }
+
+        .sel-info {
+            flex: 1;
+        }
+
+        .sel-school-name {
+            font-weight: 700;
+            font-size: .95rem;
+            color: var(--text);
+            margin-bottom: .15rem;
+        }
+
+        .sel-meta {
+            font-size: .75rem;
+            color: var(--muted);
+        }
+
+        .btn-proceed {
+            background: linear-gradient(135deg, var(--pink), var(--pink-light));
+            color: #fff;
+            padding: .65rem 1.5rem;
+            border-radius: 50px;
+            font-size: .82rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            flex-shrink: 0;
+            box-shadow: 0 6px 20px rgba(233, 30, 140, .35);
+            transition: all .25s ease;
+        }
+
+        .btn-proceed:hover {
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 10px 28px rgba(233, 30, 140, .55);
+        }
+
+        /* legend */
+        .legend {
+            display: flex;
+            gap: 1.4rem;
+            justify-content: center;
+            margin-top: 1.4rem;
+            font-size: .75rem;
+            color: var(--muted);
+        }
+
+        .leg {
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+        }
+
+        /* ── ABOUT SECTION ───────────────────────────── */
+        .about-section {
+            padding: 5rem 1.5rem;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem;
+            align-items: center;
+            max-width: 1060px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 680px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .photo-frame {
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid transparent;
+            background: var(--surface) padding-box,
+                linear-gradient(135deg, var(--blue-bright), var(--pink)) border-box;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            display: block;
+            object-fit: cover;
+            max-height: 340px;
+        }
+
+        .photo-cap {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, .65), transparent);
+            padding: 1.4rem 1.1rem .9rem;
+            font-size: .78rem;
+            color: #fff;
+            letter-spacing: .06em;
+        }
+
+        .check-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+        }
+
+        .check-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: .65rem;
+            font-size: .88rem;
+            color: var(--text-mid);
+            line-height: 1.6;
+        }
+
+        .check-list li::before {
+            content: '✓';
+            background: linear-gradient(135deg, var(--blue-bright), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* ── FOOTER ──────────────────────────────────── */
+        footer {
+            background: var(--surface3);
+            border-top: 1px solid var(--border);
+            padding: 2.8rem 1.5rem 2rem;
+            text-align: center;
+        }
+
+        .footer-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.3rem;
+            margin-bottom: 1.3rem;
+        }
+
+        .flogo {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #fff;
+            border: 2.5px solid transparent;
+            box-shadow: 0 0 0 2.5px var(--pink), 0 4px 16px rgba(233, 30, 140, .2);
+        }
+
+        .footer-title {
+            font-size: .95rem;
+            font-weight: 700;
+            margin-bottom: .35rem;
+            background: linear-gradient(90deg, var(--blue), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-meta {
+            font-size: .76rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        hr.fdiv {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 1.6rem auto;
+            max-width: 480px;
+        }
+
+        .footer-copy {
+            font-size: .7rem;
+            color: var(--muted);
+        }
+
+        /* ── RESPONSIVE ──────────────────────────────── */
+        @media (max-width: 580px) {
+            .logo-ring {
+                width: 82px;
+                height: 82px;
+            }
+
+            .stat {
+                padding: .45rem 1.1rem;
+            }
+
+            .stat-n {
+                font-size: 1.4rem;
+            }
+
+            .sel-card {
+                padding: 1.4rem 1rem;
+            }
+
+            .selected-display {
+                flex-wrap: wrap;
+            }
+
+            .btn-proceed {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="flag-strip"></div>
+
+    <!-- ══════════════ HERO ══════════════════════════════ -->
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-ov"></div>
+
+        <div class="hero-inner">
+            <div class="logo-row">
+                <div class="logo-ring"><img src="DepEd_Seal.webp" alt="DepEd Seal" /></div>
+                <div class="logo-div"></div>
+                <div class="logo-ring"><img src="Division_Logo.webp" alt="Division Logo" /></div>
+            </div>
+
+            <div class="badge"><span class="badge-dot"></span>Republic of the Philippines · Department of Education
+            </div>
+
+            <p class="hero-dept">Schools Division Office — Guihulngan City</p>
+            <h1 class="hero-title">DepEd Guihulngan<br>City Division</h1>
+            <p class="hero-sub">PIR &amp; AIP System</p>
+            <p class="hero-desc">
+                A unified platform for the <strong>Performance Indicators Report (PIR)</strong> and
+                <strong>Annual Implementation Plan (AIP)</strong> — select your school below to get started.
+            </p>
+
+            <div class="btn-row">
+                <a href="#select-school" class="btn btn-primary">🏫 Select Your School</a>
+                <a href="#about" class="btn btn-pink">📋 About the SDO</a>
+            </div>
+        </div>
+
+        <div class="scroll-ind">
+            <div class="scroll-mouse">
+                <div class="scroll-whl"></div>
+            </div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- ══════════════ STATS BAR ══════════════════════════ -->
+    <div class="stats-bar">
+        <div class="stat"><span class="stat-n" id="sTotal">105</span><span class="stat-l">Total Schools</span></div>
+        <div class="stat"><span class="stat-n" id="sElem">–</span><span class="stat-l">Elementary</span></div>
+        <div class="stat"><span class="stat-n" id="sSec">–</span><span class="stat-l">Secondary</span></div>
+        <div class="stat"><span class="stat-n">10</span><span class="stat-l">Clusters</span></div>
+    </div>
+
+    <!-- ══════════════ SCHOOL SELECTOR ════════════════════ -->
+    <section class="selector-section" id="select-school">
+        <div class="section-inner">
+            <p class="eyebrow">School Selector</p>
+            <h2 class="sec-title">Select Your School</h2>
+            <p class="sec-lead">
+                Choose your school from the list below. Filter by level or cluster, or type to search by name.
+            </p>
+
+            <div class="sel-card">
+
+                <!-- Level filter -->
+                <div class="filter-row">
+                    <span class="filter-label">Level:</span>
+                    <button class="fpill active" data-level="all">All Schools</button>
+                    <button class="fpill elem" data-level="Elementary">🟢 Elementary</button>
+                    <button class="fpill sec" data-level="Secondary">🩷 Secondary</button>
+                </div>
+
+                <!-- Cluster filter -->
+                <div class="cluster-row" id="clusterRow"></div>
+
+                <!-- Search -->
+                <div class="search-wrap">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="schoolSearch" placeholder="Type to search a school…" autocomplete="off" />
+                    <button class="search-clear" id="clearBtn" title="Clear">✕</button>
+                </div>
+
+                <!-- Count -->
+                <div class="dropdown-header">
+                    <span class="dropdown-count">Showing <strong id="visCount">105</strong> of <strong>105</strong>
+                        schools</span>
+                </div>
+
+                <!-- List -->
+                <div class="school-list" id="schoolList"></div>
+
+                <!-- Selected display -->
+                <div class="selected-display" id="selDisplay">
+                    <span class="sel-icon">🏫</span>
+                    <div class="sel-info">
+                        <div class="sel-school-name" id="selName">—</div>
+                        <div class="sel-meta" id="selMeta">—</div>
+                    </div>
+                    <button class="btn-proceed" id="proceedBtn">Proceed →</button>
+                </div>
+
+                <!-- Legend -->
+                <div class="legend">
+                    <div class="leg">
+                        <div class="sdot elem"></div> Elementary
+                    </div>
+                    <div class="leg">
+                        <div class="sdot sec"></div> Secondary
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════ ABOUT ══════════════════════════════ -->
+    <section class="about-section" id="about">
+        <div class="about-grid">
+            <div class="photo-frame">
+                <img src="SDO_Facade.webp" alt="Schools Division Office Guihulngan City" />
+                <div class="photo-cap">Schools Division Office — Guihulngan City</div>
+            </div>
+            <div>
+                <p class="eyebrow" style="text-align:left;">About the SDO</p>
+                <h2 class="sec-title"
+                    style="text-align:left; font-size:clamp(1.45rem,3vw,2.1rem); margin-bottom:.7rem;">
+                    Guihulngan City Division
+                </h2>
+                <p class="sec-lead" style="text-align:left; margin:0 0 1.6rem; max-width:100%;">
+                    Committed to providing quality, accessible, and relevant basic education to every learner in
+                    Guihulngan City, Negros Oriental.
+                </p>
+                <ul class="check-list">
+                    <li>Implements DepEd programs aligned with national and regional priorities</li>
+                    <li>Monitors and evaluates school-level performance and outcomes</li>
+                    <li>Supports principals and school heads through capacity-building programs</li>
+                    <li>Ensures timely submission of PIR and AIP compliance documents</li>
+                    <li>Advances the MATATAG agenda for quality basic education</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════ FOOTER ═════════════════════════════ -->
+    <footer>
+        <div class="footer-logos">
+            <img src="DepEd_Seal.webp" alt="DepEd Seal" class="flogo" />
+            <img src="Division_Logo.webp" alt="Division Logo" class="flogo" />
+        </div>
+        <p class="footer-title">DepEd Guihulngan City Division</p>
+        <p class="footer-meta">Schools Division Office · Guihulngan City, Negros Oriental<br>PIR &amp; AIP Management
+            System</p>
+        <hr class="fdiv" />
+        <p class="footer-copy">© 2026 Department of Education – Guihulngan City Schools Division Office. All rights
+            reserved. · Republic of the Philippines · Matatag · Bata · Bansa</p>
+    </footer>
+
+    <div class="flag-strip"></div>
+
+    <script>
+        const SCHOOLS = [
+            { name: "Mckinley CES", level: "Elementary", cluster: 1 },
+            { name: "FTAMES", level: "Elementary", cluster: 1 },
+            { name: "MTVES", level: "Elementary", cluster: 1 },
+            { name: "Daniel T. Anog NHS", level: "Secondary", cluster: 1 },
+            { name: "P. Zamora ES", level: "Elementary", cluster: 1 },
+            { name: "T. Hill ES", level: "Elementary", cluster: 1 },
+            { name: "T. Hill NHS", level: "Secondary", cluster: 1 },
+            { name: "Bakid ES", level: "Elementary", cluster: 1 },
+            { name: "Bakid NHS", level: "Secondary", cluster: 1 },
+            { name: "Mabunga ES", level: "Elementary", cluster: 1 },
+            { name: "Mabunga NHS", level: "Secondary", cluster: 1 },
+            { name: "GSCS", level: "Elementary", cluster: 2 },
+            { name: "GNHS-POBLACION", level: "Secondary", cluster: 2 },
+            { name: "Buenavista ES", level: "Elementary", cluster: 3 },
+            { name: "Agulang ES", level: "Elementary", cluster: 3 },
+            { name: "Magsaysay ES", level: "Elementary", cluster: 3 },
+            { name: "Malusay ES", level: "Elementary", cluster: 3 },
+            { name: "Mandi-i ES", level: "Elementary", cluster: 3 },
+            { name: "Nagsaha ES", level: "Elementary", cluster: 3 },
+            { name: "Planas ES", level: "Elementary", cluster: 3 },
+            { name: "Tominhao ES", level: "Elementary", cluster: 3 },
+            { name: "Villegas ES", level: "Elementary", cluster: 3 },
+            { name: "Villegas NHS", level: "Secondary", cluster: 3 },
+            { name: "Buenavista NHS", level: "Secondary", cluster: 3 },
+            { name: "Magsaysay NHS", level: "Secondary", cluster: 3 },
+            { name: "Planas NHS", level: "Secondary", cluster: 3 },
+            { name: "Hinogpayan ES", level: "Elementary", cluster: 4 },
+            { name: "Balogo ES", level: "Elementary", cluster: 4 },
+            { name: "Banwague ES", level: "Elementary", cluster: 4 },
+            { name: "Banwague NHS", level: "Secondary", cluster: 4 },
+            { name: "Dadiangao ES", level: "Elementary", cluster: 4 },
+            { name: "Hinakpan ES", level: "Elementary", cluster: 4 },
+            { name: "Hinakpan NHS", level: "Secondary", cluster: 4 },
+            { name: "Kapudlusan ES", level: "Elementary", cluster: 4 },
+            { name: "Linantuyan ES", level: "Elementary", cluster: 4 },
+            { name: "Luz ES", level: "Elementary", cluster: 4 },
+            { name: "Plagatasanon ES", level: "Elementary", cluster: 4 },
+            { name: "Taloto ES", level: "Elementary", cluster: 4 },
+            { name: "Balogo NHS", level: "Secondary", cluster: 4 },
+            { name: "GNAS", level: "Secondary", cluster: 4 },
+            { name: "Linantuyan NHS", level: "Secondary", cluster: 4 },
+            { name: "Calamba CES", level: "Elementary", cluster: 5 },
+            { name: "Calamba NHS", level: "Secondary", cluster: 5 },
+            { name: "Antibalas ES", level: "Elementary", cluster: 5 },
+            { name: "Bonbon ES", level: "Elementary", cluster: 5 },
+            { name: "Humayhumay ES", level: "Elementary", cluster: 5 },
+            { name: "Imelda ES", level: "Elementary", cluster: 5 },
+            { name: "Lag-asan ES", level: "Elementary", cluster: 5 },
+            { name: "Lip-o ES", level: "Elementary", cluster: 5 },
+            { name: "Sandayao ES", level: "Elementary", cluster: 5 },
+            { name: "Sandayao NHS", level: "Secondary", cluster: 5 },
+            { name: "Lip-o NHS", level: "Secondary", cluster: 5 },
+            { name: "Basak CES", level: "Elementary", cluster: 6 },
+            { name: "Binobohan ES", level: "Elementary", cluster: 6 },
+            { name: "Bulado ES", level: "Elementary", cluster: 6 },
+            { name: "Laos ES", level: "Elementary", cluster: 6 },
+            { name: "Maculos ES", level: "Elementary", cluster: 6 },
+            { name: "Matu-og ES", level: "Elementary", cluster: 6 },
+            { name: "Magkanaway ES", level: "Elementary", cluster: 6 },
+            { name: "Binobohan NHS", level: "Secondary", cluster: 6 },
+            { name: "Maculos NHS", level: "Secondary", cluster: 6 },
+            { name: "DPVMES", level: "Elementary", cluster: 7 },
+            { name: "Hilaitan ES", level: "Elementary", cluster: 7 },
+            { name: "Busay ES", level: "Elementary", cluster: 7 },
+            { name: "Cabal-asan ES", level: "Elementary", cluster: 7 },
+            { name: "PSLMES", level: "Elementary", cluster: 7 },
+            { name: "GNHS-Hilaitan (JHS)", level: "Secondary", cluster: 7 },
+            { name: "GSVS NHS", level: "Secondary", cluster: 7 },
+            { name: "Maniak ES", level: "Elementary", cluster: 7 },
+            { name: "JBES", level: "Elementary", cluster: 7 },
+            { name: "Calabaclabacan CES", level: "Elementary", cluster: 8 },
+            { name: "Benil-iwan ES", level: "Elementary", cluster: 8 },
+            { name: "Bongao ES", level: "Elementary", cluster: 8 },
+            { name: "Budlasan ES", level: "Elementary", cluster: 8 },
+            { name: "Panagtugas ES", level: "Elementary", cluster: 8 },
+            { name: "Trinidad ES", level: "Elementary", cluster: 8 },
+            { name: "Trinidad NHS", level: "Secondary", cluster: 8 },
+            { name: "Calupaan ES", level: "Elementary", cluster: 8 },
+            { name: "Maximina LTHS", level: "Secondary", cluster: 8 },
+            { name: "VCES", level: "Elementary", cluster: 9 },
+            { name: "Banban ES", level: "Elementary", cluster: 9 },
+            { name: "Don Esperidion VES", level: "Elementary", cluster: 9 },
+            { name: "Don Julian DVVMES", level: "Elementary", cluster: 9 },
+            { name: "Guba ES", level: "Elementary", cluster: 9 },
+            { name: "Malangsa ES", level: "Elementary", cluster: 9 },
+            { name: "Mampayao ES (Malangsa Ext.)", level: "Elementary", cluster: 9 },
+            { name: "Molobolo ES", level: "Elementary", cluster: 9 },
+            { name: "Puan ES", level: "Elementary", cluster: 9 },
+            { name: "Tabon ES", level: "Elementary", cluster: 9 },
+            { name: "Guba NHS", level: "Secondary", cluster: 9 },
+            { name: "VNHS (JHS)", level: "Secondary", cluster: 9 },
+            { name: "Don Vicente Lopez SMES", level: "Elementary", cluster: 10 },
+            { name: "Bairan ES", level: "Elementary", cluster: 10 },
+            { name: "Cabulihan ES", level: "Elementary", cluster: 10 },
+            { name: "DAPMES", level: "Elementary", cluster: 10 },
+            { name: "Macapso ES", level: "Elementary", cluster: 10 },
+            { name: "Maglahos ES", level: "Elementary", cluster: 10 },
+            { name: "Paliran ES", level: "Elementary", cluster: 10 },
+            { name: "Pinucauan ES", level: "Elementary", cluster: 10 },
+            { name: "Putian ES", level: "Elementary", cluster: 10 },
+            { name: "Tolotolo ES", level: "Elementary", cluster: 10 },
+            { name: "Ulay ES", level: "Elementary", cluster: 10 },
+            { name: "Pinucauan NHS", level: "Secondary", cluster: 10 },
+            { name: "Rafaela R. Labang NHS", level: "Secondary", cluster: 10 },
+            { name: "Tagbino NHS (SHS)", level: "Secondary", cluster: 10 },
+        ];
+
+        document.getElementById('sElem').textContent = SCHOOLS.filter(s => s.level === 'Elementary').length;
+        document.getElementById('sSec').textContent = SCHOOLS.filter(s => s.level === 'Secondary').length;
+
+        /* Cluster pills */
+        const clusters = [...new Set(SCHOOLS.map(s => s.cluster))].sort((a, b) => a - b);
+        const clusterRow = document.getElementById('clusterRow');
+        const allCP = document.createElement('button');
+        allCP.className = 'cpill active'; allCP.dataset.cluster = 'all'; allCP.textContent = 'All Clusters';
+        clusterRow.appendChild(allCP);
+        clusters.forEach(c => {
+            const b = document.createElement('button');
+            b.className = 'cpill'; b.dataset.cluster = String(c); b.textContent = `Cluster ${c}`;
+            clusterRow.appendChild(b);
+        });
+
+        let activeLevel = 'all', activeCluster = 'all', searchQ = '', selectedSchool = null;
+
+        const filtered = () => {
+            const q = searchQ.toLowerCase().trim();
+            return SCHOOLS.filter(s =>
+                (activeLevel === 'all' || s.level === activeLevel) &&
+                (activeCluster === 'all' || s.cluster === parseInt(activeCluster)) &&
+                (!q || s.name.toLowerCase().includes(q))
+            );
+        };
+
+        const render = () => {
+            const list = filtered();
+            document.getElementById('visCount').textContent = list.length;
+            const container = document.getElementById('schoolList');
+            if (!list.length) { container.innerHTML = '<div class="no-results">No schools match the current filters.</div>'; return; }
+            container.innerHTML = list.map(s => {
+                const idx = SCHOOLS.indexOf(s);
+                const cls = s.level === 'Elementary' ? 'elem' : 'sec';
+                const tag = s.level === 'Elementary' ? 'Elem' : 'Sec';
+                const sel = selectedSchool?.name === s.name ? 'selected' : '';
+                return `<div class="school-opt ${sel}" onclick="selectSchool(${idx})">
+          <div class="sdot ${cls}"></div>
+          <span class="sname">${s.name}</span>
+          <span class="stag ${cls}">${tag}</span>
+          <span class="scluster">C${s.cluster}</span>
+        </div>`;
+            }).join('');
+        };
+
+        window.selectSchool = idx => {
+            selectedSchool = SCHOOLS[idx];
+            document.getElementById('selName').textContent = selectedSchool.name;
+            document.getElementById('selMeta').textContent = `${selectedSchool.level} School · Cluster ${selectedSchool.cluster}`;
+            document.getElementById('selDisplay').classList.add('show');
+            render();
+        };
+
+        document.getElementById('proceedBtn').addEventListener('click', () => {
+            if (selectedSchool)
+                alert(`Selected:\n${selectedSchool.name}\n${selectedSchool.level} · Cluster ${selectedSchool.cluster}\n\nSystem access coming soon.`);
+        });
+
+        document.querySelectorAll('.fpill').forEach(pill => {
+            pill.addEventListener('click', () => {
+                document.querySelectorAll('.fpill').forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                activeLevel = pill.dataset.level;
+                render();
+            });
+        });
+
+        clusterRow.addEventListener('click', e => {
+            const pill = e.target.closest('.cpill');
+            if (!pill) return;
+            document.querySelectorAll('.cpill').forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            activeCluster = pill.dataset.cluster;
+            render();
+        });
+
+        const searchEl = document.getElementById('schoolSearch');
+        const clearBtn = document.getElementById('clearBtn');
+        searchEl.addEventListener('input', e => {
+            searchQ = e.target.value;
+            clearBtn.classList.toggle('show', !!searchQ);
+            render();
+        });
+        clearBtn.addEventListener('click', () => {
+            searchEl.value = ''; searchQ = ''; clearBtn.classList.remove('show'); searchEl.focus(); render();
+        });
+
+        render();
+    </script>
+</body>
+
+</html>
