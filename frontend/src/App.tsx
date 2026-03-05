@@ -1,127 +1,45 @@
 import { useState, useMemo } from 'react';
 import './index.css';
 
-const SCHOOLS = [
-    { name: "Mckinley CES", level: "Elementary", cluster: 1 },
-    { name: "FTAMES", level: "Elementary", cluster: 1 },
-    { name: "MTVES", level: "Elementary", cluster: 1 },
-    { name: "Daniel T. Anog NHS", level: "Secondary", cluster: 1 },
-    { name: "P. Zamora ES", level: "Elementary", cluster: 1 },
-    { name: "T. Hill ES", level: "Elementary", cluster: 1 },
-    { name: "T. Hill NHS", level: "Secondary", cluster: 1 },
-    { name: "Bakid ES", level: "Elementary", cluster: 1 },
-    { name: "Bakid NHS", level: "Secondary", cluster: 1 },
-    { name: "Mabunga ES", level: "Elementary", cluster: 1 },
-    { name: "Mabunga NHS", level: "Secondary", cluster: 1 },
-    { name: "GSCS", level: "Elementary", cluster: 2 },
-    { name: "GNHS-POBLACION", level: "Secondary", cluster: 2 },
-    { name: "Buenavista ES", level: "Elementary", cluster: 3 },
-    { name: "Agulang ES", level: "Elementary", cluster: 3 },
-    { name: "Magsaysay ES", level: "Elementary", cluster: 3 },
-    { name: "Malusay ES", level: "Elementary", cluster: 3 },
-    { name: "Mandi-i ES", level: "Elementary", cluster: 3 },
-    { name: "Nagsaha ES", level: "Elementary", cluster: 3 },
-    { name: "Planas ES", level: "Elementary", cluster: 3 },
-    { name: "Tominhao ES", level: "Elementary", cluster: 3 },
-    { name: "Villegas ES", level: "Elementary", cluster: 3 },
-    { name: "Villegas NHS", level: "Secondary", cluster: 3 },
-    { name: "Buenavista NHS", level: "Secondary", cluster: 3 },
-    { name: "Magsaysay NHS", level: "Secondary", cluster: 3 },
-    { name: "Planas NHS", level: "Secondary", cluster: 3 },
-    { name: "Hinogpayan ES", level: "Elementary", cluster: 4 },
-    { name: "Balogo ES", level: "Elementary", cluster: 4 },
-    { name: "Banwague ES", level: "Elementary", cluster: 4 },
-    { name: "Banwague NHS", level: "Secondary", cluster: 4 },
-    { name: "Dadiangao ES", level: "Elementary", cluster: 4 },
-    { name: "Hinakpan ES", level: "Elementary", cluster: 4 },
-    { name: "Hinakpan NHS", level: "Secondary", cluster: 4 },
-    { name: "Kapudlusan ES", level: "Elementary", cluster: 4 },
-    { name: "Linantuyan ES", level: "Elementary", cluster: 4 },
-    { name: "Luz ES", level: "Elementary", cluster: 4 },
-    { name: "Plagatasanon ES", level: "Elementary", cluster: 4 },
-    { name: "Taloto ES", level: "Elementary", cluster: 4 },
-    { name: "Balogo NHS", level: "Secondary", cluster: 4 },
-    { name: "GNAS", level: "Secondary", cluster: 4 },
-    { name: "Linantuyan NHS", level: "Secondary", cluster: 4 },
-    { name: "Calamba CES", level: "Elementary", cluster: 5 },
-    { name: "Calamba NHS", level: "Secondary", cluster: 5 },
-    { name: "Antibalas ES", level: "Elementary", cluster: 5 },
-    { name: "Bonbon ES", level: "Elementary", cluster: 5 },
-    { name: "Humayhumay ES", level: "Elementary", cluster: 5 },
-    { name: "Imelda ES", level: "Elementary", cluster: 5 },
-    { name: "Lag-asan ES", level: "Elementary", cluster: 5 },
-    { name: "Lip-o ES", level: "Elementary", cluster: 5 },
-    { name: "Sandayao ES", level: "Elementary", cluster: 5 },
-    { name: "Sandayao NHS", level: "Secondary", cluster: 5 },
-    { name: "Lip-o NHS", level: "Secondary", cluster: 5 },
-    { name: "Basak CES", level: "Elementary", cluster: 6 },
-    { name: "Binobohan ES", level: "Elementary", cluster: 6 },
-    { name: "Bulado ES", level: "Elementary", cluster: 6 },
-    { name: "Laos ES", level: "Elementary", cluster: 6 },
-    { name: "Maculos ES", level: "Elementary", cluster: 6 },
-    { name: "Matu-og ES", level: "Elementary", cluster: 6 },
-    { name: "Magkanaway ES", level: "Elementary", cluster: 6 },
-    { name: "Binobohan NHS", level: "Secondary", cluster: 6 },
-    { name: "Maculos NHS", level: "Secondary", cluster: 6 },
-    { name: "DPVMES", level: "Elementary", cluster: 7 },
-    { name: "Hilaitan ES", level: "Elementary", cluster: 7 },
-    { name: "Busay ES", level: "Elementary", cluster: 7 },
-    { name: "Cabal-asan ES", level: "Elementary", cluster: 7 },
-    { name: "PSLMES", level: "Elementary", cluster: 7 },
-    { name: "GNHS-Hilaitan (JHS)", level: "Secondary", cluster: 7 },
-    { name: "GSVS NHS", level: "Secondary", cluster: 7 },
-    { name: "Maniak ES", level: "Elementary", cluster: 7 },
-    { name: "JBES", level: "Elementary", cluster: 7 },
-    { name: "Calabaclabacan CES", level: "Elementary", cluster: 8 },
-    { name: "Benil-iwan ES", level: "Elementary", cluster: 8 },
-    { name: "Bongao ES", level: "Elementary", cluster: 8 },
-    { name: "Budlasan ES", level: "Elementary", cluster: 8 },
-    { name: "Panagtugas ES", level: "Elementary", cluster: 8 },
-    { name: "Trinidad ES", level: "Elementary", cluster: 8 },
-    { name: "Trinidad NHS", level: "Secondary", cluster: 8 },
-    { name: "Calupaan ES", level: "Elementary", cluster: 8 },
-    { name: "Maximina LTHS", level: "Secondary", cluster: 8 },
-    { name: "VCES", level: "Elementary", cluster: 9 },
-    { name: "Banban ES", level: "Elementary", cluster: 9 },
-    { name: "Don Esperidion VES", level: "Elementary", cluster: 9 },
-    { name: "Don Julian DVVMES", level: "Elementary", cluster: 9 },
-    { name: "Guba ES", level: "Elementary", cluster: 9 },
-    { name: "Malangsa ES", level: "Elementary", cluster: 9 },
-    { name: "Mampayao ES (Malangsa Ext.)", level: "Elementary", cluster: 9 },
-    { name: "Molobolo ES", level: "Elementary", cluster: 9 },
-    { name: "Puan ES", level: "Elementary", cluster: 9 },
-    { name: "Tabon ES", level: "Elementary", cluster: 9 },
-    { name: "Guba NHS", level: "Secondary", cluster: 9 },
-    { name: "VNHS (JHS)", level: "Secondary", cluster: 9 },
-    { name: "Don Vicente Lopez SMES", level: "Elementary", cluster: 10 },
-    { name: "Bairan ES", level: "Elementary", cluster: 10 },
-    { name: "Cabulihan ES", level: "Elementary", cluster: 10 },
-    { name: "DAPMES", level: "Elementary", cluster: 10 },
-    { name: "Macapso ES", level: "Elementary", cluster: 10 },
-    { name: "Maglahos ES", level: "Elementary", cluster: 10 },
-    { name: "Paliran ES", level: "Elementary", cluster: 10 },
-    { name: "Pinucauan ES", level: "Elementary", cluster: 10 },
-    { name: "Putian ES", level: "Elementary", cluster: 10 },
-    { name: "Tolotolo ES", level: "Elementary", cluster: 10 },
-    { name: "Ulay ES", level: "Elementary", cluster: 10 },
-    { name: "Pinucauan NHS", level: "Secondary", cluster: 10 },
-    { name: "Rafaela R. Labang NHS", level: "Secondary", cluster: 10 },
-    { name: "Tagbino NHS (SHS)", level: "Secondary", cluster: 10 },
-];
+
+
+interface School {
+    id: number;
+    name: string;
+    level: string;
+    cluster: number;
+}
 
 export default function App() {
+    const [schools, setSchools] = useState<School[]>([]);
+    const [loading, setLoading] = useState(true);
     const [activeLevel, setActiveLevel] = useState('all');
     const [activeCluster, setActiveCluster] = useState('all');
     const [searchQ, setSearchQ] = useState('');
     const [selectedSchool, setSelectedSchool] = useState<typeof SCHOOLS[0] | null>(null);
 
-    const sElemCount = useMemo(() => SCHOOLS.filter(s => s.level === 'Elementary').length, []);
-    const sSecCount = useMemo(() => SCHOOLS.filter(s => s.level === 'Secondary').length, []);
-    const clusters = useMemo(() => [...new Set(SCHOOLS.map(s => s.cluster))].sort((a, b) => a - b), []);
+    const sElemCount = useMemo(() => schools.filter(s => s.level === 'Elementary').length, [schools]);
+    const sSecCount = useMemo(() => schools.filter(s => s.level === 'Secondary').length, [schools]);
+    const clusters = useMemo(() => [...new Set(schools.map(s => s.cluster))].sort((a, b) => a - b), [schools]);
+
+    import("react").then(({ useEffect }) => {
+        useEffect(() => {
+            fetch("http://localhost:8000/api/schools")
+                .then(res => res.json())
+                .then(data => {
+                    setSchools(data || []);
+                    setLoading(false);
+                })
+                .catch(err => {
+                    console.error("Failed to fetch schools", err);
+                    setLoading(false);
+                });
+        }, []);
+    });
 
     const filteredSchools = useMemo(() => {
         const q = searchQ.toLowerCase().trim();
-        return SCHOOLS.filter(s =>
+        return schools.filter(s =>
             (activeLevel === 'all' || s.level === activeLevel) &&
             (activeCluster === 'all' || s.cluster === parseInt(activeCluster)) &&
             (!q || s.name.toLowerCase().includes(q))
@@ -177,7 +95,7 @@ export default function App() {
 
             {/* ══════════════ STATS BAR ══════════════════════════ */}
             <div className="stats-bar">
-                <div className="stat"><span className="stat-n">{SCHOOLS.length}</span><span className="stat-l">Total Schools</span></div>
+                <div className="stat"><span className="stat-n">{loading ? '...' : schools.length}</span><span className="stat-l">Total Schools</span></div>
                 <div className="stat"><span className="stat-n">{sElemCount}</span><span className="stat-l">Elementary</span></div>
                 <div className="stat"><span className="stat-n">{sSecCount}</span><span className="stat-l">Secondary</span></div>
                 <div className="stat"><span className="stat-n">{clusters.length}</span><span className="stat-l">Clusters</span></div>
@@ -254,13 +172,15 @@ export default function App() {
                         {/* Count */}
                         <div className="dropdown-header">
                             <span className="dropdown-count">
-                                Showing <strong>{filteredSchools.length}</strong> of <strong>{SCHOOLS.length}</strong> schools
+                                Showing <strong>{filteredSchools.length}</strong> of <strong>{schools.length}</strong> schools
                             </span>
                         </div>
 
                         {/* List */}
                         <div className="school-list">
-                            {filteredSchools.length === 0 ? (
+                            {loading ? (
+                                <div className="no-results">Loading schools...</div>
+                            ) : filteredSchools.length === 0 ? (
                                 <div className="no-results">No schools match the current filters.</div>
                             ) : (
                                 filteredSchools.map((s, idx) => {
