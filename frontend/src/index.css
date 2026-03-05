@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@plugin "framer-motion";
 
 *,
 *::before,
@@ -792,6 +791,61 @@ body {
     width: 100%;
     border-radius: 20px;
     box-shadow: var(--shadow-md);
+}
+
+.photo-frame {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.photo-frame img {
+    width: 100%;
+    display: block;
+    border-radius: 20px;
+}
+
+.photo-cap {
+    font-size: .75rem;
+    color: var(--muted);
+    text-align: center;
+    margin-top: .75rem;
+    font-style: italic;
+}
+
+.check-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+    margin-bottom: 2rem;
+    padding: 0;
+}
+
+.check-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: .6rem;
+    font-size: .88rem;
+    color: var(--text-mid);
+    line-height: 1.5;
+}
+
+.check-list li::before {
+    content: '✓';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    background: var(--blue-pale);
+    color: var(--blue);
+    border-radius: 50%;
+    font-size: .7rem;
+    font-weight: 700;
+    margin-top: 1px;
 }
 
 .about-b {

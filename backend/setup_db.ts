@@ -1,12 +1,14 @@
 import postgres from "https://deno.land/x/postgresjs/mod.js";
 import { parse } from "jsr:@std/csv";
+import "jsr:@std/dotenv/load";
 
-// Connect to the DB using the default unix socket/TCP for postgres user with no password on localhost
-const sql = postgres('postgres://pir_admin:PIR_s3cur3_2026!@localhost:5432/pir_system');
+const DATABASE_URL = Deno.env.get("DATABASE_URL");
+if (!DATABASE_URL) throw new Error("DATABASE_URL is not set in .env");
+const sql = postgres(DATABASE_URL);
 
 async function main() {
   console.log("Reading CSV...");
-  const csvText = await Deno.readTextFile("../Schools.csv");
+  const csvText = await Deno.readTextFile("./data/Schools.csv");
   const records = parse(csvText, { skipFirstRow: true });
 
   console.log("Setting up tables...");
@@ -31,7 +33,7 @@ async function main() {
   await sql`
     CREATE TABLE IF NOT EXISTS programs (
         id SERIAL PRIMARY KEY,
-        title VARCHAR(255),
+        title VARCHAR(255) UNIQUE,
         school_level_requirement VARCHAR(50)
     );
   `;
@@ -82,6 +84,7 @@ async function main() {
       await sql`
         INSERT INTO programs (title, school_level_requirement)
         VALUES (${row.Title}, ${row.SchoolLevel || null})
+        ON CONFLICT (title) DO NOTHING
       `;
     }
   }
