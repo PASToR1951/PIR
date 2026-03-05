@@ -1,7 +1,12 @@
 import { Application, Router } from "jsr:@oak/oak";
 import postgres from "https://deno.land/x/postgresjs/mod.js";
+import "jsr:@std/dotenv/load";
 
-const sql = postgres('postgres://pir_admin:PIR_s3cur3_2026!@localhost:5432/pir_system');
+const DATABASE_URL = Deno.env.get("DATABASE_URL");
+if (!DATABASE_URL) throw new Error("DATABASE_URL is not set in .env");
+
+const sql = postgres(DATABASE_URL);
+const PORT = Number(Deno.env.get("PORT") ?? 8000);
 
 const router = new Router();
 router.get("/api/schools", async (context) => {
@@ -37,5 +42,5 @@ app.use(async (ctx, next) => {
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-console.log("Server listening on port 8000");
-await app.listen({ port: 8000 });
+console.log(`Server listening on port ${PORT}`);
+await app.listen({ port: PORT });

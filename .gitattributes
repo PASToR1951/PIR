@@ -1,9 +1,25 @@
+# Handle line endings automatically for files detected as text
+# and leave binary files untouched.
 * text=auto
+
+# Standard text files
 *.ts text eol=lf
 *.tsx text eol=lf
 *.js text eol=lf
 *.jsx text eol=lf
 *.css text eol=lf
+*.scss text eol=lf
+*.html text eol=lf
 *.json text eol=lf
 *.md text eol=lf
-*.html text eol=lf
+*.csv text eol=lf
+*.yml text eol=lf
+
+# Graphics / Assets (Binary)
+*.webp binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.svg text
+*.ico binary
+*.webp binary
