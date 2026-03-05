@@ -1,8 +1,7 @@
 import { Application, Router } from "jsr:@oak/oak";
-import { oakCors } from "jsr:@oak/cors";
 import postgres from "https://deno.land/x/postgresjs/mod.js";
 
-const sql = postgres('postgres://postgres:postgres@localhost:5432/pir_system');
+const sql = postgres('postgres://pir_admin:PIR_s3cur3_2026!@localhost:5432/pir_system');
 
 const router = new Router();
 router.get("/api/schools", async (context) => {
@@ -22,7 +21,19 @@ router.get("/api/schools", async (context) => {
 });
 
 const app = new Application();
-app.use(oakCors()); // Enable CORS for all routes
+
+// Simple CORS middleware
+app.use(async (ctx, next) => {
+  ctx.response.headers.set("Access-Control-Allow-Origin", "*");
+  ctx.response.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  ctx.response.headers.set("Access-Control-Allow-Headers", "Content-Type");
+  if (ctx.request.method === "OPTIONS") {
+    ctx.response.status = 204;
+    return;
+  }
+  await next();
+});
+
 app.use(router.routes());
 app.use(router.allowedMethods());
 

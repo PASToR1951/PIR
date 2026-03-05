@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import './index.css';
 
 
@@ -16,26 +16,24 @@ export default function App() {
     const [activeLevel, setActiveLevel] = useState('all');
     const [activeCluster, setActiveCluster] = useState('all');
     const [searchQ, setSearchQ] = useState('');
-    const [selectedSchool, setSelectedSchool] = useState<typeof SCHOOLS[0] | null>(null);
+    const [selectedSchool, setSelectedSchool] = useState<School | null>(null);
 
     const sElemCount = useMemo(() => schools.filter(s => s.level === 'Elementary').length, [schools]);
     const sSecCount = useMemo(() => schools.filter(s => s.level === 'Secondary').length, [schools]);
     const clusters = useMemo(() => [...new Set(schools.map(s => s.cluster))].sort((a, b) => a - b), [schools]);
 
-    import("react").then(({ useEffect }) => {
-        useEffect(() => {
-            fetch("http://localhost:8000/api/schools")
-                .then(res => res.json())
-                .then(data => {
-                    setSchools(data || []);
-                    setLoading(false);
-                })
-                .catch(err => {
-                    console.error("Failed to fetch schools", err);
-                    setLoading(false);
-                });
-        }, []);
-    });
+    useEffect(() => {
+        fetch("http://localhost:8000/api/schools")
+            .then(res => res.json())
+            .then(data => {
+                setSchools(data || []);
+                setLoading(false);
+            })
+            .catch(err => {
+                console.error("Failed to fetch schools", err);
+                setLoading(false);
+            });
+    }, []);
 
     const filteredSchools = useMemo(() => {
         const q = searchQ.toLowerCase().trim();
@@ -44,7 +42,7 @@ export default function App() {
             (activeCluster === 'all' || s.cluster === parseInt(activeCluster)) &&
             (!q || s.name.toLowerCase().includes(q))
         );
-    }, [activeLevel, activeCluster, searchQ]);
+    }, [activeLevel, activeCluster, searchQ, schools]);
 
     const handleProceed = () => {
         if (selectedSchool) {
