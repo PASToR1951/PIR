@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react';
+import { ChevronDown } from 'lucide-react';
 
 export const TextareaAuto = ({ className, ...props }: any) => {
     const ref = useRef<HTMLTextAreaElement>(null);
@@ -41,7 +42,7 @@ export const Select = ({ label, options, ...props }: any) => (
                 {options.map((opt: string) => <option key={opt} value={opt}>{opt}</option>)}
             </select>
             <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-slate-400">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+                <ChevronDown size={16} strokeWidth={2.5} />
             </div>
         </div>
     </div>

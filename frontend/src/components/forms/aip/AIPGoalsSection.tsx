@@ -1,4 +1,5 @@
 import React from 'react';
+import { Target } from 'lucide-react';
 import { TextareaAuto } from '../shared/FormInputs';
 
 interface AIPGoalsSectionProps {
@@ -26,7 +27,7 @@ export const AIPGoalsSection: React.FC<AIPGoalsSectionProps> = ({
         <div className={`${(appMode === 'full' || currentStep === 2) ? 'block' : 'hidden'} mb-6`}>
             <div className="mb-6 flex items-center gap-3">
                 <div className="p-1.5 bg-emerald-50 text-emerald-600 border border-emerald-100 rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                    <Target size={16} strokeWidth={2.5} />
                 </div>
                 <div>
                     <h2 className="text-lg font-bold text-slate-800 tracking-tight">Goals & Targets</h2>

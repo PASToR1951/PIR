@@ -1,5 +1,6 @@
 import React from 'react';
 import { PHASES } from './AIPActionPlanTable';
+import { Edit2 } from 'lucide-react';
 
 interface AIPPrintLayoutProps {
     appMode: 'wizard' | 'full';
@@ -45,7 +46,7 @@ export const AIPPrintLayout: React.FC<AIPPrintLayoutProps> = ({
             >
                 {appMode === 'wizard' && (
                     <div className="absolute right-4 top-4 opacity-0 group-hover:opacity-100 transition-opacity bg-emerald-600 text-white text-xs px-3 py-1.5 rounded-lg font-bold shadow-md print:hidden flex items-center gap-1.5 z-10 pointer-events-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /></svg>
+                        <Edit2 size={12} strokeWidth={2.5} />
                         Edit Section
                     </div>
                 )}
@@ -87,7 +88,7 @@ export const AIPPrintLayout: React.FC<AIPPrintLayoutProps> = ({
             >
                 {appMode === 'wizard' && (
                     <div className="absolute right-4 top-4 opacity-0 group-hover:opacity-100 transition-opacity bg-emerald-600 text-white text-xs px-3 py-1.5 rounded-lg font-bold shadow-md print:hidden flex items-center gap-1.5 z-10 pointer-events-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /></svg>
+                        <Edit2 size={12} strokeWidth={2.5} />
                         Edit Section
                     </div>
                 )}

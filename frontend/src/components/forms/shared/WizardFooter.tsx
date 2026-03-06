@@ -1,4 +1,5 @@
 import React from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface WizardFooterProps {
     currentStep: number;
@@ -32,7 +33,7 @@ export const WizardFooter: React.FC<WizardFooterProps> = ({
                     : 'text-slate-600 bg-white shadow-sm border border-slate-200 hover:bg-slate-50 active:scale-95'
                     }`}
             >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                <ChevronLeft size={16} strokeWidth={2.5} />
                 Back
             </button>
 
@@ -54,7 +55,7 @@ export const WizardFooter: React.FC<WizardFooterProps> = ({
                         className="group relative inline-flex h-12 items-center justify-center rounded-xl bg-slate-900 px-8 font-bold text-white shadow-md transition-colors active:scale-95 hover:bg-slate-800 gap-2"
                     >
                         {nextLabel}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-1"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        <ChevronRight size={16} strokeWidth={2.5} className="transition-transform group-hover:translate-x-1" />
                     </button>
                 </div>
             )}

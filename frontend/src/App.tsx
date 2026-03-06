@@ -55,14 +55,12 @@ export default function App() {
     const schoolIdParam = parseInt(queryParams.get('school') || "0");
     const schoolNameParam = queryParams.get('name') || "Unknown School";
 
-    const navigateToHome = () => window.location.hash = '';
-
     if (pathParts === '#/aip/new') {
-        return <AIPForm schoolId={schoolIdParam} schoolName={schoolNameParam} onBack={navigateToHome} />;
+        return <AIPForm schoolId={schoolIdParam} schoolName={schoolNameParam} />;
     }
 
     if (pathParts === '#/pir/new') {
-        return <PIRForm schoolId={schoolIdParam} schoolName={schoolNameParam} onBack={navigateToHome} />;
+        return <PIRForm schoolId={schoolIdParam} schoolName={schoolNameParam} />;
     }
 
     return (

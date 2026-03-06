@@ -1,4 +1,5 @@
 import React from 'react';
+import { User } from 'lucide-react';
 import { Input, Select } from '../shared/FormInputs';
 
 const PROGRAM_LIST = [
@@ -56,7 +57,7 @@ export const PIRProfileSection: React.FC<PIRProfileSectionProps> = ({
         <div className={`${(appMode === 'full' || currentStep === 1) ? 'block' : 'hidden'} ${appMode === 'full' ? 'mb-12' : 'mb-6'}`}>
             <div className="mb-6 flex items-center gap-3">
                 <div className="p-1.5 bg-blue-50 text-blue-600 border border-blue-100 rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    <User size={16} strokeWidth={2.5} />
                 </div>
                 <div>
                     <h2 className="text-lg font-bold text-slate-800 tracking-tight">Program Profile</h2>
